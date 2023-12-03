@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    marginBottom: 4,
-    marginTop: 10,
+    marginBottom: 10,
     padding: 10,
     margin: 0,
   },
@@ -46,9 +45,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
-  LImage: {
-    width: 100,
-    height: 100,
+  forgotPasswordText: {
+    color: 'blue',
+    marginTop: 40,
+    textDecorationLine: 'underline',
+  },
+  logoImage: {
+    width: 200,
+    height: 200,
     marginTop: 20,
   },
 });
@@ -58,23 +62,23 @@ export default function App() {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Implement your login logic here
-    // Check if username and password are valid
-    // If valid, navigate to the home screen
-    // If invalid, display an error message
     console.log('Logging in with:', { username, password });
+  };
+
+  const handleForgotPassword = () => {
+    console.log('Forgot Password clicked');
   };
 
   return (
     <View style={styles.container}>
-      <Image style={styles.LImage} source={{ uri: 'https://drive.google.com/file/d/1eAAZrolO9ALJ0rcMymCXvWLuwKhkDjQZ/view?usp=sharing' }} />
+      <Image style={styles.logoImage} source={require('./birdlogo.png')} resizeMode="contain" />
       <Text style={styles.title}>Login</Text>
 
-      <View style={{ flexDirection: 'row', flex: 1, alignSelf: 'center' }}>
-        <TextInput style={styles.input} placeholder="Username" onChangeText={(text) => setUsername(text)} />
+      <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+        <TextInput style={[styles.input, { marginBottom: 4 }]} placeholder="Username" onChangeText={(text) => setUsername(text)} />
       </View>
 
-      <View style={{ flexDirection: 'row', flex: 1, alignSelf: 'center', marginTop: 1 }}>
+      <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
         <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={(text) => setPassword(text)} />
       </View>
 
@@ -86,6 +90,10 @@ export default function App() {
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
+
+      <TouchableOpacity onPress={handleForgotPassword}>
+        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+      </TouchableOpacity>
 
       <StatusBar style="auto" />
     </View>
